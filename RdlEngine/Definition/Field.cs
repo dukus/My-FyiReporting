@@ -161,9 +161,10 @@ namespace fyiReporting.RDL
 		{
 			get 
 			{
-				if (qc != null)
-					return qc.colType;
-				else 
+                // For Sqlite aggregation will return wrong column type
+				//if (qc != null)
+				//	return qc.colType;
+				//else 
 					return Type;
 			}
 		}

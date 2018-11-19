@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using fyiReporting.RdlViewer;
 
 namespace LibRdlWpfViewer
 {
@@ -19,6 +20,7 @@ namespace LibRdlWpfViewer
     /// </summary>
     public partial class RdlWpfViewer : UserControl
     {
+
         public RdlWpfViewer()
         {
             InitializeComponent();
@@ -78,6 +80,11 @@ namespace LibRdlWpfViewer
             }
         }
 
+        public RdlViewer Viewer
+        {
+            get => reportViewer;
+            set => reportViewer = value;
+        }
     }
 
 }
