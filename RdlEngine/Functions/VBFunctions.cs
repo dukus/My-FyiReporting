@@ -32,288 +32,316 @@ using fyiReporting.RDL;
 
 namespace fyiReporting.RDL
 {
-	/// <summary>
-	/// The VBFunctions class holds a number of static functions for support VB functions.
-	/// </summary>
-	sealed public class VBFunctions
-	{
-		/// <summary>
-		/// Obtains the year
-		/// </summary>
-		/// <param name="dt"></param>
-		/// <returns>int year</returns>
-		static public int Year(DateTime dt)
-		{
-			return dt.Year;
-		}
-		/// <summary>
-		/// Returns the integer day of week: 1=Sunday, 2=Monday, ..., 7=Saturday
-		/// </summary>
-		/// <param name="dt"></param>
-		/// <returns></returns>
-		static public int Weekday(DateTime dt)
-		{
-			int dow;
-			switch (dt.DayOfWeek)
-			{
-				case DayOfWeek.Sunday:
-					dow=1;
-					break;
-				case DayOfWeek.Monday:
-					dow=2;
-					break;
-				case DayOfWeek.Tuesday:
-					dow=3;
-					break;
-				case DayOfWeek.Wednesday:
-					dow=4;
-					break;
-				case DayOfWeek.Thursday:
-					dow=5;
-					break;
-				case DayOfWeek.Friday:
-					dow=6;
-					break;
-				case DayOfWeek.Saturday:
-					dow=7;
-					break;
-				default:			// should never happen
-					dow=1;
-					break;
-			}
-			return dow;
-		}
+    /// <summary>
+    /// The VBFunctions class holds a number of static functions for support VB functions.
+    /// </summary>
+    sealed public class VBFunctions
+    {
+        /// <summary>
+        /// Obtains the year
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns>int year</returns>
+        static public int Year(DateTime dt)
+        {
+            return dt.Year;
+        }
 
-		/// <summary>
-		/// Returns the name of the day of week
-		/// </summary>
-		/// <param name="d"></param>
-		/// <returns></returns>
-		static public string WeekdayName(int d)
-		{
-			return WeekdayName(d, false);
-		}
+        /// <summary>
+        /// Returns the integer day of week: 1=Sunday, 2=Monday, ..., 7=Saturday
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        static public int Weekday(DateTime dt)
+        {
+            int dow;
+            switch (dt.DayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    dow = 1;
+                    break;
+                case DayOfWeek.Monday:
+                    dow = 2;
+                    break;
+                case DayOfWeek.Tuesday:
+                    dow = 3;
+                    break;
+                case DayOfWeek.Wednesday:
+                    dow = 4;
+                    break;
+                case DayOfWeek.Thursday:
+                    dow = 5;
+                    break;
+                case DayOfWeek.Friday:
+                    dow = 6;
+                    break;
+                case DayOfWeek.Saturday:
+                    dow = 7;
+                    break;
+                default: // should never happen
+                    dow = 1;
+                    break;
+            }
 
-		/// <summary>
-		/// Returns the name of the day of week
-		/// </summary>
-		/// <param name="d"></param>
-		/// <param name="bAbbreviation">true for abbreviated name</param>
-		/// <returns></returns>
-		static public string WeekdayName(int d, bool bAbbreviation)
-		{
-			DateTime dt = new DateTime(2005, 5, d);		// May 1, 2005 is a Sunday
-			string wdn = bAbbreviation? string.Format("{0:ddd}", dt):string.Format("{0:dddd}", dt);
-			return wdn;
-		}
-		/// <summary>
-		/// Get the day of the month.
-		/// </summary>
-		/// <param name="dt"></param>
-		/// <returns></returns>
-		static public int Day(DateTime dt)
-		{
-			return dt.Day;
-		}
-		
-		/// <summary>
-		/// Gets the integer month
-		/// </summary>
-		/// <param name="dt"></param>
-		/// <returns></returns>
-		static public int Month(DateTime dt)
-		{
+            return dow;
+        }
+
+        /// <summary>
+        /// Returns the name of the day of week
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        static public string WeekdayName(int d)
+        {
+            return WeekdayName(d, false);
+        }
+
+        /// <summary>
+        /// Returns the name of the day of week
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="bAbbreviation">true for abbreviated name</param>
+        /// <returns></returns>
+        static public string WeekdayName(int d, bool bAbbreviation)
+        {
+            DateTime dt = new DateTime(2005, 5, d); // May 1, 2005 is a Sunday
+            string wdn = bAbbreviation ? string.Format("{0:ddd}", dt) : string.Format("{0:dddd}", dt);
+            return wdn;
+        }
+
+        /// <summary>
+        /// Get the day of the month.
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        static public int Day(DateTime dt)
+        {
+            return dt.Day;
+        }
+
+        /// <summary>
+        /// Gets the integer month
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        static public int Month(DateTime dt)
+        {
             return dt.Month;
-		}
-		
-		/// <summary>
-		/// Get the month name
-		/// </summary>
-		/// <param name="m"></param>
-		/// <returns></returns>
-		static public string MonthName(int m)
-		{
-			return MonthName(m, false);
-		}
+        }
 
-		/// <summary>
-		/// Gets the month name; optionally abbreviated
-		/// </summary>
-		/// <param name="m"></param>
-		/// <param name="bAbbreviation"></param>
-		/// <returns></returns>
-		static public string MonthName(int m, bool bAbbreviation)
-		{
-			DateTime dt = new DateTime(2005, m, 1);
+        /// <summary>
+        /// Get the month name
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        static public string MonthName(int m)
+        {
+            return MonthName(m, false);
+        }
 
-			string mdn = bAbbreviation? string.Format("{0:MMM}", dt):string.Format("{0:MMMM}", dt);
-			return mdn;
-		}
+        /// <summary>
+        /// Gets the month name; optionally abbreviated
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="bAbbreviation"></param>
+        /// <returns></returns>
+        static public string MonthName(int m, bool bAbbreviation)
+        {
+            DateTime dt = new DateTime(2005, m, 1);
 
-		/// <summary>
-		/// Gets the hour
-		/// </summary>
-		/// <param name="dt"></param>
-		/// <returns></returns>
-		static public int Hour(DateTime dt)
-		{
-			return dt.Hour;
-		}
-		/// <summary>
-		/// Get the minute
-		/// </summary>
-		/// <param name="dt"></param>
-		/// <returns></returns>
-		static public int Minute(DateTime dt)
-		{
-			return dt.Minute;
-		}
+            string mdn = bAbbreviation ? string.Format("{0:MMM}", dt) : string.Format("{0:MMMM}", dt);
+            return mdn;
+        }
 
-		/// <summary>
-		/// Get the second
-		/// </summary>
-		/// <param name="dt"></param>
-		/// <returns></returns>
-		static public int Second(DateTime dt)
-		{
-			return dt.Second;
-		}
+        /// <summary>
+        /// Gets the hour
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        static public int Hour(DateTime dt)
+        {
+            return dt.Hour;
+        }
 
-		/// <summary>
-		/// Gets the current local date on this computer
-		/// </summary>
-		/// <returns></returns>
-		static public DateTime Today()
-		{ 
+        /// <summary>
+        /// Get the minute
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        static public int Minute(DateTime dt)
+        {
+            return dt.Minute;
+        }
+
+        /// <summary>
+        /// Get the second
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        static public int Second(DateTime dt)
+        {
+            return dt.Second;
+        }
+
+        /// <summary>
+        /// Gets the current local date on this computer
+        /// </summary>
+        /// <returns></returns>
+        static public DateTime Today()
+        {
             DateTime dt = DateTime.Now;
             return new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, 0);
-		}
-		/// <summary>
-		/// Converts the first letter in a string to ANSI code 
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public int Asc(string o)
-		{
-			if (o == null || o.Length == 0)
-				return 0;
+        }
 
-			return Convert.ToInt32(o[0]);
-		}
-		/// <summary>
-		/// Converts an expression to Boolean  
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public bool CBool(object o)
-		{
-			return Convert.ToBoolean(o);
-		}
-		/// <summary>
-		/// Converts an expression to type Byte
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public Byte CByte(string o)
-		{
-			return Convert.ToByte(o);
-		}
-		/// <summary>
-		/// Converts an expression to type Currency - really Decimal
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public decimal CCur(string o)
-		{
-			return Convert.ToDecimal(o);
-		}
-		/// <summary>
-		/// Converts an expression to type Date
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public DateTime CDate(string o)
-		{
-			return Convert.ToDateTime(o);
-		}
-		/// <summary>
-		/// Converts the specified ANSI code to a character
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public char Chr(int o)
-		{
-			return Convert.ToChar(o);
-		}
-		/// <summary>
-		/// Converts the expression to integer
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public int CInt(object o)
-		{
-			return Convert.ToInt32(o);
-		}
-		/// <summary>
-		/// Converts the expression to long
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public long CLng(object o)
-		{
-			return Convert.ToInt64(o);
-		}
-		/// <summary>
-		/// Converts the expression to Single
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public Single CSng(object o)
-		{
-			return Convert.ToSingle(o);
-		}
-		/// <summary>
-		/// Converts the expression to String
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public string CStr(object o)
-		{
-			return Convert.ToString(o);
-		}
-		/// <summary>
-		/// Returns the hexadecimal value of a specified number
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public string Hex(long o)
-		{
-			return Convert.ToString(o, 16);
-		}
-		/// <summary>
-		/// Returns the octal value of a specified number
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public string Oct(long o)
-		{
-			return Convert.ToString(o, 8);
-		}
+        /// <summary>
+        /// Converts the first letter in a string to ANSI code 
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public int Asc(string o)
+        {
+            if (o == null || o.Length == 0)
+                return 0;
 
-		/// <summary>
-		/// Converts the passed parameter to double
-		/// </summary>
-		/// <param name="o"></param>
-		/// <returns></returns>
-		static public double CDbl(Object o)
-		{
-			return Convert.ToDouble(o);
-		}
-        
+            return Convert.ToInt32(o[0]);
+        }
+
+        /// <summary>
+        /// Converts an expression to Boolean  
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public bool CBool(object o)
+        {
+            return Convert.ToBoolean(o);
+        }
+
+        /// <summary>
+        /// Converts an expression to type Byte
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public Byte CByte(string o)
+        {
+            return Convert.ToByte(o);
+        }
+
+        /// <summary>
+        /// Converts an expression to type Currency - really Decimal
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public decimal CCur(string o)
+        {
+            return Convert.ToDecimal(o);
+        }
+
+        /// <summary>
+        /// Converts an expression to type Date
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public DateTime CDate(string o)
+        {
+            return Convert.ToDateTime(o);
+        }
+
+        /// <summary>
+        /// Converts the specified ANSI code to a character
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public char Chr(int o)
+        {
+            return Convert.ToChar(o);
+        }
+
+        /// <summary>
+        /// Converts the expression to integer
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public int CInt(object o)
+        {
+            return Convert.ToInt32(o);
+        }
+
+        /// <summary>
+        /// Converts the expression to long
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public long CLng(object o)
+        {
+            return Convert.ToInt64(o);
+        }
+
+        /// <summary>
+        /// Converts the expression to Single
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public Single CSng(object o)
+        {
+            return Convert.ToSingle(o);
+        }
+
+        /// <summary>
+        /// Converts the expression to String
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public string CStr(object o)
+        {
+            return Convert.ToString(o);
+        }
+
+        /// <summary>
+        /// Returns the hexadecimal value of a specified number
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public string Hex(long o)
+        {
+            return Convert.ToString(o, 16);
+        }
+
+        /// <summary>
+        /// Returns the octal value of a specified number
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public string Oct(long o)
+        {
+            return Convert.ToString(o, 8);
+        }
+
+        /// <summary>
+        /// Converts the passed parameter to double
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        static public double CDbl(Object o)
+        {
+            return Convert.ToDouble(o);
+        }
+
         static public DateTime DateAdd(string interval, double number, string date)
         {
             return DateAdd(interval, number, DateTime.Parse(date));
         }
+
+        /// <summary>
+        /// Return difference between two dates in day
+        /// </summary>
+        /// <param name="date1">The date1.</param>
+        /// <param name="date2">The date2.</param>
+        /// <returns></returns>
+        static public double DiffDay(DateTime date1, DateTime date2)
+        {
+            return (date1 - date2).TotalDays;
+        }
+
 
         /// <summary>
         /// Returns a date to which a specified time interval has been added. 
