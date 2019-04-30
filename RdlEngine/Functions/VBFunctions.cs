@@ -872,6 +872,19 @@ namespace fyiReporting.RDL
 		{
 			return str == null? null: str.ToUpper();
 		}
+
+        static public string Join(IEnumerable list)
+        {
+            return Join(list,",");
+        }
+
+        static public string Join(IEnumerable list, string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                str = ",";
+            return  System.String.Join(str, list);
+        }
+
         /// <summary>
         /// Rounds a number to zero decimal places
         /// </summary>
