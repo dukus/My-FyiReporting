@@ -55,7 +55,8 @@ namespace fyiReporting.RdlDesign
          typeof(byte), 
          typeof(UInt16), 
          typeof(UInt32), 
-         typeof(UInt64) 
+         typeof(UInt64),
+         typeof(IEnumerable)
       };
 
         // design draw 

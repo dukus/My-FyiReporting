@@ -22,7 +22,9 @@
 */
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -872,17 +874,34 @@ namespace fyiReporting.RDL
 		{
 			return str == null? null: str.ToUpper();
 		}
-
-        static public string Join(IEnumerable list)
+        static public string JoinList(object list)
         {
-            return Join(list,",");
+            Console.WriteLine("JoinList ....");
+            return JoinList(list as IEnumerable, ",");
         }
-
-        static public string Join(IEnumerable list, string str)
+        /// <summary>
+        /// Return a joined list of the array
+        /// </summary>
+        /// <param name="list">Enumeration</param>
+        /// <returns></returns>
+        static public string JoinList(IEnumerable list)
+        {
+            return JoinList(list,",");
+        }
+        /// <summary>
+        /// Return a joined list of the array
+        /// </summary>
+        /// <param name="list">Enumeration</param>
+        /// <param name="str">Separator</param>
+        /// <returns></returns>
+        static public string JoinList(IEnumerable list, string str)
         {
             if (string.IsNullOrEmpty(str))
                 str = ",";
-            return  System.String.Join(str, list);
+            if (list == null)
+                return "";
+            var res = string.Join(str,new List<string>(list.Cast<string>()));
+            return res;
         }
 
         /// <summary>

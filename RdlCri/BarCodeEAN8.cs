@@ -5,13 +5,14 @@ using fyiReporting.RDL;
 using System.Drawing;
 using System.ComponentModel;
 using System.Xml;
+using ZXing;
 
 namespace fyiReporting.CRI
 {
     public class BarCodeEAN8 : ICustomReportItem
     {
-        static public readonly float OptimalHeight = 35.91f;          // Optimal height at magnification 1    
-        static public readonly float OptimalWidth = 65.91f;            // Optimal width at mag 1
+        static public readonly float OptimalHeight = 10f;          // Optimal height at magnification 1    
+        static public readonly float OptimalWidth = 19f;            // Optimal width at mag 1
         private string _codeEan8 = "";
 
         #region ICustomReportItem Members
@@ -34,13 +35,18 @@ namespace fyiReporting.CRI
         /// <param name="bm"></param>
         public void DrawDesignerImage(ref Bitmap bm)
         {
-            DrawImage(ref bm, "12345678");
+            DrawImage(ref bm, "1234567890128");
         }
 
         public void DrawImage(ref Bitmap bm, string code)
         {
 			var writer = new ZXing.BarcodeWriter();
-			writer.Format = ZXing.BarcodeFormat.EAN_8;
+            if (code.Length==13)
+			writer.Format = ZXing.BarcodeFormat.EAN_13;
+            else if (code.Length == 8)
+                writer.Format = ZXing.BarcodeFormat.EAN_8;
+            else
+                writer.Format = ZXing.BarcodeFormat.CODE_128;
 
             Graphics g = null;
             g = Graphics.FromImage(bm);
@@ -52,8 +58,8 @@ namespace fyiReporting.CRI
 
 			writer.Options.Height = barHeight;
 			writer.Options.Width = barWidth;
-
-			bm = writer.Write(code);
+            writer.Options.PureBarcode = true;
+            bm = writer.Write(code);
      
         }
 
@@ -117,7 +123,7 @@ namespace fyiReporting.CRI
                 "<CustomProperties>" +
                 "<CustomProperty>" +
                 "<Name>Code</Name>" +
-                "<Value>00123456</Value>" +
+                "<Value>1234567890128</Value>" +
                 "</CustomProperty>" +
                 "</CustomProperties>" +
                 "</CustomReportItem>";
@@ -143,6 +149,7 @@ namespace fyiReporting.CRI
             string _codeEan8;
             BarCodeEAN8 _bc;
             XmlNode _node;
+            private ZXing.BarcodeFormat _format = BarcodeFormat.EAN_13;
 
             internal BarCodeProperties(BarCodeEAN8 bc, XmlNode node)
             {
@@ -162,7 +169,13 @@ namespace fyiReporting.CRI
                 set { _codeEan8 = value; _bc.SetPropertiesInstance(_node, this); }
             }
 
-
+            [Category("Code"),
+             Description("The text string to be encoded as a BarCodeEAN8 Code.")]
+            public ZXing.BarcodeFormat Type
+            {
+                get { return _format; }
+                set { _format = value; _bc.SetPropertiesInstance(_node, this); }
+            }
         }
     }
 }

@@ -1469,9 +1469,9 @@ namespace fyiReporting.RdlDesign
                 DrawImageSized(xNode,ImageSizingEnum.Clip, bm, si, ir);
                 DrawBorder(si, ir);
             }
-            catch
+            catch (Exception e)
             {
-                DrawString("CustomReportItem type is unknown.", si, ir);
+                DrawString("CustomReportItem type is unknown.\n"+e.Message, si, ir);
             }
             finally
             {
