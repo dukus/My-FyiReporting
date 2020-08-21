@@ -904,6 +904,16 @@ namespace fyiReporting.RDL
             return res;
         }
 
+        static public string SortDistinct(string list, string separator)
+        {
+            if (!list.Contains(separator))
+            {
+                //return list;
+            }
+
+            var newList = list.Split(separator[0]);
+            return string.Join(separator, newList.OrderBy(x=>x).Distinct());
+        }
         /// <summary>
         /// Rounds a number to zero decimal places
         /// </summary>
